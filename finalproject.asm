@@ -1,8 +1,8 @@
 .data
 teamPrompt:    .asciiz "Choose your team: 1 for Cavs, 2 for Warriors: "
-cavs_msg:       .asciiz "You chose the Cleveland Cavaliers.\n"
-warriors_msg:   .asciiz "You chose the Golden State Warriors.\n"
-invalid_team:   .asciiz "Invalid team selection. Enter 1 or 2.\n"
+cavsSelec:       .asciiz "You chose the Cleveland Cavaliers.\n"
+warriorsSelec:   .asciiz "You chose the Golden State Warriors.\n"
+invalidTeam:   .asciiz "Invalid team selection. Enter 1 or 2.\n"
 
 prompt:         .asciiz "Shoot the ball! Enter 2 for a 2-pointer or 3 for a 3-pointer: "
 invalid:        .asciiz "Invalid shot! Only 2 or 3 is allowed.\n"
@@ -25,24 +25,24 @@ teamSelect:
     move $t3, $v0          
 
     li $t4, 1
-    beq $t3, $t4, cavs_selected
+    beq $t3, $t4, cavsSelected
 
     li $t4, 2
-    beq $t3, $t4, warriors_selected
+    beq $t3, $t4, warriorsSelected
 
     li $v0, 4
-    la $a0, invalid_team
+    la $a0, invalidTeam
     syscall
     j teamSelect
 
-cavs_selected:
+cavsSelected:
     li $v0, 4
-    la $a0, cavs_msg
+    la $a0, cavsSelec
     syscall
    
 
-warriors_selected:
+warriorsSelected:
     li $v0, 4
-    la $a0, warriors_msg
+    la $a0, warriorsSelec
     syscall
   
